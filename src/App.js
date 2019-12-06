@@ -44,6 +44,41 @@ class App extends React.Component {
         amazoneValue: prevState.tweeterValue
       }))
     }
+    increaseValues2(){
+      this.setState((prevState)=>({
+        values:[
+          {"company":"Microsoft", "value":prevState.values[0].value+1},
+          {"company":"Tweeter", "value":prevState.values[1].value+1},
+          {"company":"Amazon", "value":prevState.values[2].value+1},
+          {"company":"Tyler", "value":prevState.values[3].value+1}    
+        ]
+      }))
+    }
+
+    decreaseValues2(){
+      this.setState((prevState)=>({
+        values:[
+          {"company":"Microsoft", "value":prevState.values[0].value-1},
+          {"company":"Tweeter", "value":prevState.values[1].value-1},
+          {"company":"Amazon", "value":prevState.values[2].value-1},
+          {"company":"Tyler", "value":prevState.values[3].value-1}    
+        ]
+      }))
+    }
+
+    jumbleValues2(){
+      this.setState((prevState)=>({
+        values:[
+          {"company":"Microsoft", "value":prevState.values[3].value},
+          {"company":"Tweeter", "value":prevState.values[0].value},
+          {"company":"Amazon", "value":prevState.values[1].value},
+          {"company":"Tyler", "value":prevState.values[2].value}    
+        ]
+      }))
+    }
+
+
+
 
   render() {
     return (
@@ -58,6 +93,9 @@ class App extends React.Component {
           increase={this.increaseValues.bind(this)}
           decrease={this.decreaseValues.bind(this)}
           jumble={this.jumbleValues.bind(this)}
+          increase2={this.increaseValues2.bind(this)}
+          decrease2={this.decreaseValues2.bind(this)}
+          jumble2={this.jumbleValues2.bind(this)}
         />
       </div>
     )
