@@ -14,6 +14,15 @@ class Main extends React.Component {
                     <button onClick={this.props.decrease}>Decrease Stock Values</button>
                     <button onClick={this.props.jumble}>Jumble Data</button>
                 </ul>
+
+                <ul>
+                    {
+                        this.props.values.map((items)=>
+                        <li>{items.company}: {items.value}</li>
+                        )
+                    }
+                </ul>
+
             </div>
         )
     }

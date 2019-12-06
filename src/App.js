@@ -11,7 +11,13 @@ class App extends React.Component {
       name: "Fred",
       microsoftValue: 100,
       tweeterValue: 200,
-      amazoneValue: 300
+      amazoneValue: 300,
+      values:[
+        {"company":"Microsoft", "value":100},
+        {"company":"Tweeter", "value":200},
+        {"company":"Amazon", "value":300},
+        {"company":"Tyler", "value":400},
+      ]
     }
   }
 
@@ -45,6 +51,7 @@ class App extends React.Component {
         <Welcome name={this.state.name} />
 
         <Main
+          values={this.state.values}
           microsoftValue={this.state.microsoftValue}
           tweeterValue={this.state.tweeterValue}
           amazoneValue={this.state.amazoneValue}
