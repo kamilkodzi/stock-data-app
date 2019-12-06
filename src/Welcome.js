@@ -22,7 +22,7 @@ function Welcome(props){
 
     return(
         <div>
-            <h1>Welcome! {props.name}</h1>
+        <h1>Welcome! {props.first} {props.last}</h1>
             {
                 display?
                 <p className={classNameValue}>Good {timeOfDay}</p> :

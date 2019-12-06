@@ -3,11 +3,14 @@ import './App.css';
 import Welcome from './Welcome';
 import Main from './Main';
 import Greetings from './Greetings';
+import LoginForm from './LoginForm';
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      first: "First",
+      last:"Last",
       name: "Fred",
       microsoftValue: 100,
       tweeterValue: 200,
@@ -17,7 +20,9 @@ class App extends React.Component {
         {"company":"Tweeter", "value":200},
         {"company":"Amazon", "value":300},
         {"company":"Tyler", "value":400},
-      ]
+      ],
+      email:'',
+      password: ''
     }
   }
 
@@ -77,14 +82,40 @@ class App extends React.Component {
       }))
     }
 
+handleChange(event){
+  const target = event.target;
+  const value = target.value;
+  const name = target.name;
 
+  this.setState({
+    [name]:value
+  })
+}
 
+handleSubmit(event){
+  event.preventDefault();
+}
+
+handleFormUpdate(values){
+  this.setState({
+    email:values.email,
+    password: values.password
+  })
+}
 
   render() {
     return (
       <div>Stock-App
-        <Welcome name={this.state.name} />
-
+        <Welcome first={this.state.first} last={this.state.last}/>
+        <form onSubmit={this.handleSubmit.bind(this)}> 
+          <label>First Name:
+            <input type="text" name="first" value={this.state.first} onChange={this.handleChange.bind(this)}/>
+          </label>
+          <label>Last Name:
+            <input type="text" name="last" value={this.state.last} onChange={this.handleChange.bind(this)}/>
+          </label>
+        <button type="submit">Submit</button>
+        </form>
         <Main
           values={this.state.values}
           microsoftValue={this.state.microsoftValue}
@@ -97,6 +128,7 @@ class App extends React.Component {
           decrease2={this.decreaseValues2.bind(this)}
           jumble2={this.jumbleValues2.bind(this)}
         />
+        <LoginForm handleFormUpdate={this.handleFormUpdate.bind(this)}/>
       </div>
     )
   }
