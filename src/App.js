@@ -43,7 +43,6 @@ class App extends React.Component {
     return (
       <div>Stock-App
         <Welcome name={this.state.name} />
-        <Greetings name={this.state.name}/>
 
         <Main
           microsoftValue={this.state.microsoftValue}

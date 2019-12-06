@@ -1,3 +1,13 @@
+.Morning{
+  color: yellow;
+}
+.Night{
+  color:purple;
+}
+.Afternoon{
+  color: orangered;
+}
+
 .App {
   text-align: center;
 }
