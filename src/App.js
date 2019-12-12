@@ -5,6 +5,7 @@ import Main from './Main';
 import Greetings from './Greetings';
 import LoginForm from './LoginForm';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -22,9 +23,20 @@ class App extends React.Component {
         {"company":"Tyler", "value":400},
       ],
       email:'',
-      password: ''
+      password: '',
+      stockData:[],
+      isLoggedIn:false
     }
   }
+
+    componentDidMount(){
+      fetch("https://api.openaq.org/v1/latest?country=FR&parameter=pm25&limit=10")
+      .then(response=>response.json())
+      .then(response=>this.setState({
+        stockData:response.results
+      }))
+    }
+
 
     increaseValues(){
       this.setState((prevState)=>({
@@ -99,7 +111,8 @@ handleSubmit(event){
 handleFormUpdate(values){
   this.setState({
     email:values.email,
-    password: values.password
+    password: values.password,
+    isLoggedIn:true
   })
 }
 
@@ -129,6 +142,24 @@ handleFormUpdate(values){
           jumble2={this.jumbleValues2.bind(this)}
         />
         <LoginForm handleFormUpdate={this.handleFormUpdate.bind(this)}/>
+        {
+          this.state.isLoggedIn?
+            <p>Thanks for logging in!</p> :
+            <p>please login above.</p>
+        }
+
+        {
+         this.state.stockData.map((items,index)=>{
+            
+          return(
+            <div>
+            <h1>{items.city}</h1>
+            <p>location: {items.location}</p>
+          </div>
+          )
+          })
+        }
+        
       </div>
     )
   }
