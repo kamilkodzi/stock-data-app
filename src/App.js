@@ -4,6 +4,7 @@ import Welcome from './Welcome';
 import Main from './Main';
 import Greetings from './Greetings';
 import LoginForm from './LoginForm';
+import ApiCallData from './ApiCallData';
 
 
 class App extends React.Component {
@@ -147,18 +148,8 @@ handleFormUpdate(values){
             <p>Thanks for logging in!</p> :
             <p>please login above.</p>
         }
+        <ApiCallData stockData={this.state.stockData}/>
 
-        {
-         this.state.stockData.map((items,index)=>{
-            
-          return(
-            <div>
-            <h1>{items.city}</h1>
-            <p>location: {items.location}</p>
-          </div>
-          )
-          })
-        }
         
       </div>
     )
